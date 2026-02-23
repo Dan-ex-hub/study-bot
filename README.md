@@ -6,7 +6,7 @@ An intelligent study chatbot with user authentication, session management, and r
 
 | | Link |
 |--|------|
-| **Frontend** | [https://study-bot-seven.vercel.app](https://study-bot-seven.vercel.app) |
+| **Frontend** | [https://study-bot-seven.vercel.app](https://study-bot-delta.vercel.app/login) |
 | **Backend** | [https://study-bot-glj0.onrender.com](https://study-bot-glj0.onrender.com) |
 
 ---
