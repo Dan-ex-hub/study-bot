@@ -2,6 +2,13 @@
 
 An intelligent study chatbot with user authentication, session management, and real-time streaming AI responses. Built with FastAPI and React.
 
+## 🔗 Live Demo
+
+| | Link |
+|--|------|
+| **Frontend** | [https://study-bot-seven.vercel.app](https://study-bot-seven.vercel.app) |
+| **Backend** | [https://study-bot-glj0.onrender.com](https://study-bot-glj0.onrender.com) |
+
 ---
 
 ## Project Structure
