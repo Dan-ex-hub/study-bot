@@ -1,0 +1,12 @@
+numpy
+langchain
+langchain_community
+langchain_core
+Langchain_groq
+pymongo
+fastapi
+uvicorn
+python_multipart
+python-jose[cryptography]
+bcrypt
+python-dotenv

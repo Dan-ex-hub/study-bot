@@ -1,0 +1,178 @@
+@import "tailwindcss";
+
+/* Fix white space below app - ensure full height dark background */
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #212121;
+  overflow: hidden;
+}
+
+/* Custom scrollbar for dark theme */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e1e1e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
+
+/* Markdown content styling inside assistant messages */
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  font-weight: 700;
+  margin-top: 0.75em;
+  margin-bottom: 0.25em;
+}
+
+.markdown-body h1 {
+  font-size: 1.5rem;
+}
+
+.markdown-body h2 {
+  font-size: 1.25rem;
+}
+
+.markdown-body h3 {
+  font-size: 1.1rem;
+}
+
+.markdown-body p {
+  margin-bottom: 0.5em;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.markdown-body ul {
+  list-style-type: disc;
+}
+
+.markdown-body ol {
+  list-style-type: decimal;
+}
+
+/* Inline code styling */
+.markdown-body code:not(pre code) {
+  background: rgba(100, 100, 150, 0.3) !important;
+  padding: 0.15em 0.4em !important;
+  border-radius: 4px !important;
+  font-size: 0.9em !important;
+  color: #f472b6 !important;
+}
+
+/* Code block styling - prevent overflow */
+.markdown-body pre {
+  background: #1e1e2e !important;
+  padding: 0.75em 1em !important;
+  border-radius: 8px !important;
+  overflow-x: auto !important;
+  max-width: 100% !important;
+  margin: 0.5em 0 !important;
+  box-sizing: border-box !important;
+  display: block !important;
+}
+
+.markdown-body pre code {
+  background: none !important;
+  padding: 0 !important;
+  display: block !important;
+  white-space: pre !important;
+  overflow-x: auto !important;
+  max-width: 100% !important;
+  font-size: 0.85em !important;
+  line-height: 1.5 !important;
+  word-break: normal !important;
+  word-wrap: normal !important;
+  color: #e2e8f0 !important;
+}
+
+/* Ensure message bubbles don't overflow */
+.markdown-body {
+  max-width: 100% !important;
+  overflow-wrap: break-word !important;
+  word-break: break-word !important;
+  box-sizing: border-box !important;
+}
+
+/* Force all children to respect container width */
+.markdown-body * {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.markdown-body blockquote {
+  border-left: 3px solid #555;
+  padding-left: 1em;
+  color: #aaa;
+  margin-bottom: 0.5em;
+}
+
+.markdown-body a {
+  color: #60a5fa;
+  text-decoration: underline;
+}
+
+.markdown-body table {
+  border-collapse: collapse;
+  margin-bottom: 0.5em;
+  width: 100%;
+  display: block;
+  overflow-x: auto;
+}
+
+.markdown-body th,
+.markdown-body td {
+  border: 1px solid #444;
+  padding: 0.4em 0.8em;
+  text-align: left;
+}
+
+.markdown-body th {
+  background: #2a2a3a;
+}
+
+/* Typing indicator animation */
+@keyframes blink {
+
+  0%,
+  80%,
+  100% {
+    opacity: 0;
+  }
+
+  40% {
+    opacity: 1;
+  }
+}
+
+.typing-dot {
+  animation: blink 1.4s infinite both;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
