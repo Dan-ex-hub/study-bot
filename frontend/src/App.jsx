@@ -158,7 +158,7 @@ function ChatLayout() {
   const activeSession = sessions.find(s => s.session_id === activeSessionId)
 
   return (
-    <div className="flex h-screen bg-[#0B0B0F] text-slate-100 relative overflow-hidden">
+    <div className="flex bg-[#0B0B0F] text-slate-100 relative overflow-hidden" style={{ height: '100dvh' }}>
       {/* Animated background orbs */}
       <div className="gradient-orb w-[700px] h-[700px] bg-indigo-600/15 -top-48 -left-48 animate-pulse-glow pointer-events-none hidden lg:block" />
       <div className="gradient-orb w-[600px] h-[600px] bg-purple-600/12 bottom-0 right-0 animate-pulse-glow pointer-events-none hidden lg:block" style={{ animationDelay: '2s' }} />
@@ -194,7 +194,7 @@ function ChatLayout() {
       </div>
 
       {/* Main chat area */}
-      <div className="flex flex-col flex-1 min-w-0 h-screen overflow-hidden relative">
+      <div className="flex flex-col flex-1 min-w-0 overflow-hidden relative" style={{ height: '100dvh' }}>
         {/* Top bar - Enhanced glassmorphism */}
         <div className="flex items-center justify-between gap-4 px-5 py-4 bg-white/[0.03] backdrop-blur-2xl border-b border-white/[0.06] z-10 shadow-lg shadow-black/5">
           <div className="flex items-center gap-3 min-w-0">
