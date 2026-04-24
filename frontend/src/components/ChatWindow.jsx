@@ -22,30 +22,45 @@ export default function ChatWindow({ messages, isLoading, error, username, selec
     const [mounted, setMounted] = useState(false)
     const [showScrollButton, setShowScrollButton] = useState(false)
     const scrollContainerRef = useRef(null)
+    const isUserScrolledUp = useRef(false)
+    const lastMessageCount = useRef(0)
 
     useEffect(() => { setMounted(true) }, [])
 
-    // Auto-scroll to bottom when messages change
+    // Auto-scroll to bottom only when a NEW message is added, not on every token
     useEffect(() => {
-        bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
+        const currentCount = messages.length
+        const isNewMessage = currentCount !== lastMessageCount.current
+
+        if (isNewMessage) {
+            // New message added — scroll to bottom immediately
+            lastMessageCount.current = currentCount
+            isUserScrolledUp.current = false
+            bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
+        } else if (!isUserScrolledUp.current) {
+            // Streaming tokens — only scroll if user hasn't scrolled up
+            bottomRef.current?.scrollIntoView({ behavior: 'instant' })
+        }
     }, [messages, isLoading])
 
-    // Show/hide scroll to bottom button
+    // Show/hide scroll to bottom button, and track if user scrolled up
     useEffect(() => {
         const container = scrollContainerRef.current
         if (!container) return
 
         const handleScroll = () => {
             const { scrollTop, scrollHeight, clientHeight } = container
-            const isNearBottom = scrollHeight - scrollTop - clientHeight < 200
+            const isNearBottom = scrollHeight - scrollTop - clientHeight < 100
+            isUserScrolledUp.current = !isNearBottom
             setShowScrollButton(!isNearBottom && messages.length > 0)
         }
 
-        container.addEventListener('scroll', handleScroll)
+        container.addEventListener('scroll', handleScroll, { passive: true })
         return () => container.removeEventListener('scroll', handleScroll)
     }, [messages.length])
 
     const scrollToBottom = () => {
+        isUserScrolledUp.current = false
         bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
     }
 
