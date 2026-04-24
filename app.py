@@ -32,13 +32,20 @@ accounts_collection = db["accounts"] # user accounts
 # ─── FastAPI App ──────────────────────────────────────────
 app = FastAPI()
 
+FRONTEND_URL = os.getenv("FRONTEND_URL", "")
+
+# Build allowed origins list
+_allowed_origins = [
+    "http://localhost:5173",
+    "http://localhost:5174",
+]
+if FRONTEND_URL:
+    _allowed_origins.append(FRONTEND_URL)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "https://study-bot-gamma.vercel.app",
-        "http://localhost:5173",
-        "http://localhost:5174",
-    ],
+    allow_origins=_allowed_origins,
+    allow_origin_regex=r"https://.*\.vercel\.app",  # allow all Vercel preview/prod URLs
     allow_methods=["*"],
     allow_headers=["*"],
     allow_credentials=True,
