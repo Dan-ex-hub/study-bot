@@ -1,15 +1,15 @@
 # 📚 StudyBot — AI-Powered Study Assistant
 
-An AI-powered study chatbot built with **FastAPI**, **React**, **Groq LLMs**, and **MongoDB**. Supports multi-session chat history, math formula rendering, image analysis via vision models, and streaming responses.
-
----
-
 ## 🌐 Live Deployment
 
 | Service  | URL |
 |----------|-----|
-| Frontend | _Add your Vercel/Netlify URL here_ |
-| Backend  | _Add your Railway URL here_ |
+| Frontend | [study-bot-gamma.vercel.app](https://study-bot-gamma.vercel.app) |
+| Backend  | [web-production-9e6e7.up.railway.app](https://web-production-9e6e7.up.railway.app) |
+
+---
+
+An AI-powered study chatbot built with **FastAPI**, **React**, **Groq LLMs**, and **MongoDB**. Supports multi-session chat history, math formula rendering, image analysis via vision models, and streaming responses.
 
 ---
 
