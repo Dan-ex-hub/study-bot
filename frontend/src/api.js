@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const PROD_API = 'https://web-production-9e6e7.up.railway.app'
-const API_BASE = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? PROD_API : 'http://localhost:8000')
+const API_BASE = (import.meta.env.VITE_API_URL || (import.meta.env.PROD ? PROD_API : 'http://localhost:8000')).replace(/\/$/, '')
 
 const api = axios.create({
     baseURL: API_BASE,
