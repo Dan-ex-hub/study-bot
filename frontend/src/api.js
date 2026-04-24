@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+const PROD_API = 'https://web-production-9e6e7.up.railway.app'
+const API_BASE = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? PROD_API : 'http://localhost:8000')
 
 const api = axios.create({
     baseURL: API_BASE,
@@ -123,6 +124,10 @@ export async function streamChatMessage(sessionId, question, onToken, model = nu
 
     if (!response.ok) {
         const error = await response.json().catch(() => ({ detail: 'Request failed' }))
+        // 404 almost always means the backend URL is wrong / not reachable
+        if (response.status === 404) {
+            throw new Error('Cannot reach the server. Please try again later.')
+        }
         throw new Error(error.detail || 'Request failed')
     }
 
