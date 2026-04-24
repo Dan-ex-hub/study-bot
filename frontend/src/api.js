@@ -113,21 +113,22 @@ export async function streamChatMessage(sessionId, question, onToken, model = nu
         body.image_data = imageData
     }
 
-    const response = await fetch(`${API_BASE}/chat`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify(body)
-    })
+    let response
+    try {
+        response = await fetch(`${API_BASE}/chat`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(body)
+        })
+    } catch (networkErr) {
+        throw new Error('Network error — check your connection or the server may be down.')
+    }
 
     if (!response.ok) {
         const error = await response.json().catch(() => ({ detail: 'Request failed' }))
-        // 404 almost always means the backend URL is wrong / not reachable
-        if (response.status === 404) {
-            throw new Error('Cannot reach the server. Please try again later.')
-        }
         throw new Error(error.detail || 'Request failed')
     }
 
