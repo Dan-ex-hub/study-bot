@@ -34,7 +34,7 @@ export default function Login() {
     }
 
     return (
-        <div className="min-h-screen bg-[#0B0B0F] flex items-center justify-center px-4 relative overflow-hidden">
+        <div className="min-h-screen bg-[#0B0B0F] flex items-center justify-center px-4 py-10 relative overflow-y-auto overflow-x-hidden">
             {/* Animated background orbs */}
             <div className="gradient-orb w-[500px] h-[500px] bg-indigo-600/20 -top-32 -left-32 animate-pulse-glow" />
             <div className="gradient-orb w-[400px] h-[400px] bg-purple-500/15 bottom-0 right-0 animate-pulse-glow" style={{ animationDelay: '1.5s' }} />
