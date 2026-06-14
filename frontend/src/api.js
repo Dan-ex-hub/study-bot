@@ -30,11 +30,35 @@ api.interceptors.response.use(
             // Token is invalid or expired — clear auth and redirect to login
             localStorage.removeItem('study_bot_token')
             localStorage.removeItem('study_bot_user')
-            window.location.href = '/login'
+            if (!window.location.pathname.startsWith('/login')) {
+                window.location.href = '/login'
+            }
         }
         return Promise.reject(error)
     }
 )
+
+// Normalize any error (axios, fetch, thrown Error) into a friendly message.
+export function getErrorMessage(error, fallback = 'Something went wrong. Please try again.') {
+    if (!error) return fallback
+
+    // Network / no response
+    if (error.code === 'ERR_NETWORK' || error.message === 'Network Error') {
+        return 'Network error — check your connection or the server may be offline.'
+    }
+
+    const status = error.response?.status
+    const detail = error.response?.data?.detail
+
+    if (detail) {
+        return typeof detail === 'string' ? detail : (detail[0]?.msg || fallback)
+    }
+    if (status === 429) return 'Too many requests. Please slow down and try again shortly.'
+    if (status === 500) return 'The server ran into a problem. Please try again in a moment.'
+    if (status === 503) return 'Service temporarily unavailable. Please try again shortly.'
+
+    return error.message || fallback
+}
 
 // ─── Auth API ────────────────────────────────────────────
 
